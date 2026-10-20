@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="so">Sistema Operativo</button>
+    <button id="bd">Base de Datos</button>
+    <button id="lp">Lenguaje de Programacion</button>
+    <input type="text" id="sms" />
+    <h1 id="txt"></h1>
+    <script>
+      const btn1 = document.getElementById("so");
+      const btn2 = document.getElementById("bd");
+      const btn3 = document.getElementById("lp");
+      const box = document.getElementById("sms");
+      const txt = document.getElementById("txt");
+      //functio () : Funcion Anonima
+      btn1.addEventListener("click", function () {
+        console.log("Windows11,Linux,Android");
+      });
+      btn2.addEventListener("click", function () {
+        console.log("MS SQL SERVER, SQLITE,MYSQL,MongoDB");
+      });
+      btn3.addEventListener("click", function () {
+        console.log("Python ,JS,PHP,CSharp");
+      });
+      //Eventos de teclado
+      //keyup (liberar), keydown (presionado),keypress key(up | down)
+      box.addEventListener("keyup", function () {
+        //innerHTML <etiqueta>VALOR</etiqueta>
+        //caja.value represneta el CONTENIDO de la caj de texto
+        txt.innerHTML = box.value;
+      });
+    </script>
+  </body>
+</html>
