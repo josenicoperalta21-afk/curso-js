@@ -17,8 +17,12 @@
     </select>
     <input type="text" id="codigo" />
     <script>
+      const pais = document.getElementById("paises");
+      const codigo = document.getElementById("codigo");
 
-      
+      pais.addEventListener("change", function () {
+        codigo.value = pais.value;
+      });
     </script>
   </body>
 </html>
