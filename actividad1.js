@@ -1,17 +1,24 @@
-//Almacena run texto en una varible y luego mostralo en orden inverso en la consola
+// Almacena un texto en una variable y muéstralo en orden inverso en la consola.
 //Ejemplo : 'SENATI' ->"ITANES"
 const txt = "SENATI";
 const longitud = txt.length;
+let textoInvertido = "";
 
 for (let i = longitud - 1; i >= 0; i--) {
-  console.log(txt.substring(i, i + 1).concat(txt));
+  textoInvertido += txt.substring(i, i + 1);
 }
-//Crear un avarible donde almacenes una direccion de correo electronico
-//Verificar cuando el correo es valido cuando tiene un solo  @
+console.log(textoInvertido);
+
+// Crea una variable con una dirección de correo electrónico.
+// Verifica que tenga exactamente un @.
 //Ejemplo
 // LM@gmial.com [check]
-const correo = "jhon@gmail.com";
+const correo = "jose@gmail.com";
 const cantidadArrobas = correo.split("@").length - 1;
-const esCorrecto = cantidadArrobas === 1;
-console.log(`¿El correo es correcto? ${esCorrecto}`);
-//
+console.log(`¿El correo ${correo} es correcto? `);
+const verificar = cantidadArrobas === 1;
+if (verificar) {
+  console.log(`CORRECTO`);
+} else {
+  console.log(`INCORRECTO`);
+}

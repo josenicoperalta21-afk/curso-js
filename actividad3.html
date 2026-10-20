@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cotización de equipos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #eef5ff, #f8f9fc);
+        min-height: 100vh;
+      }
+
+      .quote-box {
+        border-radius: 12px;
+        box-shadow: 0 12px 32px rgb(35 61 102 / 12%);
+      }
+
+      .quote-title {
+        color: #214478;
+      }
+    </style>
+  </head>
+  <!-- Formulario realizar cotizacion -->
+  <!-- Compra una PC / portatil -->
+  <!-- Exista campos obligatorios / no obligatorios -->
+  <!-- Generar un cuadro de dialogo con la confirmacion -->
+  <!-- Aplicar estilos CSS -->
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <form action="" autocomplete="off" class="box quote-box" id="form">
+              <h1 class="title is-4 quote-title">
+                Cotización de computadora o laptop
+              </h1>
+              <p class="mb-5">
+                Complete sus datos para solicitar una cotización. Los campos con
+                * son obligatorios.
+              </p>
+              <div class="field">
+                <label class="label" for="apellidos">Apellidos *</label>
+                <input
+                  type="text"
+                  class="input"
+                  id="apellidos"
+                  minlength="3"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label class="label" for="nombres">Nombres (opcional)</label>
+                <input type="text" class="input" id="nombres" minlength="3" />
+              </div>
+              <div class="field">
+                <label class="label" for="email">Correo electrónico *</label>
+                <input type="email" class="input" id="email" required />
+              </div>
+
+              <div class="field">
+                <label for="producto" class="label"
+                  >Equipo que desea cotizar *</label
+                >
+                <div class="select is-fullwidth">
+                  <select name="producto" id="producto" required>
+                    <option value="" selected disabled>
+                      Seleccione un equipo
+                    </option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="Computadora de escritorio">
+                      Computadora de escritorio
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label" for="cantidad">Cantidad *</label>
+                <input
+                  type="number"
+                  class="input"
+                  id="cantidad"
+                  min="1"
+                  value="1"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label class="label" for="detalles"
+                  >Requisitos o detalles (opcional)</label
+                >
+                <textarea
+                  class="textarea"
+                  id="detalles"
+                  placeholder="Por ejemplo: memoria, almacenamiento o uso previsto"
+                ></textarea>
+              </div>
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link" type="submit">Enviar</button>
+                </div>
+                <div class="control">
+                  <button class="button is-link is-light" type="reset">
+                    Reiniciar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      //Vamos a detener el evento submit (envio)
+      //El evento submit esta asociado al formulario y No al boton
+      const formulario = document.getElementById("form");
+      //Gestion de eventos
+      formulario.addEventListener("submit", function (event) {
+        //Freno para cualquier evento...
+        event.preventDefault();
+        const producto = document.getElementById("producto").value;
+        const cantidad = document.getElementById("cantidad").value;
+        if (
+          confirm(
+            `¿Confirma la solicitud de cotización para ${cantidad} ${producto}?`,
+          )
+        ) {
+          alert("Su solicitud de cotización fue enviada correctamente.");
+        }
+      });
+    </script>
+  </body>
+</html>

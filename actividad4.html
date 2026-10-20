@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <h3>CUESTIONARIO [5 PREGUNTAS]</h3>
+      <p id="progreso" aria-live="polite"></p>
+      <section aria-labelledby="pregunta">
+        <h2 id="pregunta"></h2>
+        <div id="alternativas"></div>
+      </section>
+      <nav aria-label="Navegación del cuestionario">
+        <button id="anterior" type="button">Anterior</button>
+        <button id="siguiente" type="button">Siguiente</button>
+      </nav>
+      <p id="resultado" aria-live="polite"></p>
+    </main>
+
+    <script>
+      // Agrega preguntas al arreglo para ampliar el cuestionario.
+      const cuestionario = {
+        preguntas: [
+          {
+            texto: "¿Cuanto es 2 * 2 ?",
+            alternativas: ["4", "54", "12"],
+            correcta: 0,
+          },
+          {
+            texto: "¿Qué no es un lenguaje de progrmacion",
+            alternativas: ["HTML", "JAVA", "PHP"],
+            correcta: 0,
+          },
+          {
+            texto: "¿Qué operador compara valor y tipo?",
+            alternativas: ["==", "=", "==="],
+            correcta: 2,
+          },
+          {
+            texto:
+              "¿Qué estructura repite código mientras se cumple una condición?",
+            alternativas: ["if", "while", "switch"],
+            correcta: 1,
+          },
+          {
+            texto: "¿Qué método añade un elemento al final de un arreglo?",
+            alternativas: ["push()", "shift()", "pop()"],
+            correcta: 0,
+          },
+        ],
+      };
+
+      const preguntas = cuestionario.preguntas;
+      const respuestas = Array(preguntas.length);
+      let indice = 0;
+      const titulo = document.querySelector("#pregunta");
+      const alternativas = document.querySelector("#alternativas");
+      const progreso = document.querySelector("#progreso");
+      const resultado = document.querySelector("#resultado");
+      const botonAnterior = document.querySelector("#anterior");
+      const botonSiguiente = document.querySelector("#siguiente");
+
+      function mostrarPregunta() {
+        const actual = preguntas[indice];
+        titulo.textContent = actual.texto;
+        progreso.textContent = `Pregunta ${indice + 1} de ${preguntas.length}`;
+        alternativas.innerHTML = "";
+        for (let opcion = 0; opcion < actual.alternativas.length; opcion++) {
+          const id = "opcion-" + indice + "-" + opcion;
+          const contenedor = document.createElement("div");
+          contenedor.className = "form-check";
+
+          const radio = document.createElement("input");
+          radio.className = "form-check-input";
+          radio.type = "radio";
+          radio.name = "respuesta-" + indice;
+          radio.id = id;
+          radio.checked = respuestas[indice] === opcion;
+          radio.onclick = function () {
+            respuestas[indice] = opcion;
+          };
+
+          const etiqueta = document.createElement("label");
+          etiqueta.className = "form-check-label";
+          etiqueta.htmlFor = id;
+          etiqueta.textContent = actual.alternativas[opcion];
+
+          contenedor.appendChild(radio);
+          contenedor.appendChild(etiqueta);
+          alternativas.appendChild(contenedor);
+        }
+        botonAnterior.disabled = indice === 0;
+        botonSiguiente.textContent =
+          indice === preguntas.length - 1 ? "Finalizar" : "Siguiente";
+        resultado.textContent = "";
+      }
+
+      botonAnterior.addEventListener("click", () => {
+        if (indice > 0) {
+          indice--;
+          mostrarPregunta();
+        }
+      });
+      botonSiguiente.addEventListener("click", () => {
+        if (respuestas[indice] === undefined) {
+          resultado.textContent = "Selecciona una alternativa para continuar.";
+        } else if (indice < preguntas.length - 1) {
+          indice++;
+          mostrarPregunta();
+        } else {
+          const aciertos = preguntas.reduce(
+            (total, pregunta, posicion) =>
+              total + Number(respuestas[posicion] === pregunta.correcta),
+            0,
+          );
+          resultado.textContent = `Cuestionario completado: ${aciertos} de ${preguntas.length} respuestas correctas.`;
+        }
+      });
+
+      mostrarPregunta();
+    </script>
+  </body>
+</html>
