@@ -1,9 +1,15 @@
-//Creaar un objeto que alamacenedatos de una mascota
-//Desestructurar utilizando un minimo de 4
+//Actividad 2.1
+//Crear un objeto que almacene datos de una mascota 
+//desestructurar utilizando un minito de 4 variables 
+//mostrar en consola.
+
 const mascota = {
-  nombre: "Max",
-  raza: "Gold",
-  tamaño :"Grande",
-  sexo:"Macho",
-  color:"Gris",
+	nombre: "Luna",
+	especie: "perro",
+	edad: 3,
+	color: "café"
 };
+
+const { nombre, especie, edad, color } = mascota;
+
+console.log(nombre, especie, edad, color);
